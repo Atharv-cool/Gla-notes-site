@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Home from './Home';
+import Subject from './Subject';
+import Labs from './Labs';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createContext, useState } from 'react';
+export const notesData = createContext();
 function App() {
+  const [apiState,setApiState] = useState('');
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <notesData.Provider value={{apiState,setApiState}}>
+    <BrowserRouter>
+    <Routes>
+    <Route path="/" element={<Home/>} />
+    <Route path="/subject" element={<Subject />} />
+    <Route path="/lab" element={<Labs />} />
+    </Routes>
+    </BrowserRouter>
+    </notesData.Provider>
   );
 }
 
