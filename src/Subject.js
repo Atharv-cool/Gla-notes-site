@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./css/sb-admin-2.min.css";
 import { useState, useEffect,useContext } from "react";
 import { notesData } from "./App";
-import "./Card.css";
+import styles from "./card.module.css";
 function Subject() {
   const [data, setData] = useState([]);
   const [filteredData,setFilteredData] = useState("");
@@ -122,14 +122,14 @@ function Subject() {
             </form>  
           </nav>
           <div className="container-fluid">
-  <div id="card-container" >
+  <div id={styles['card-container']}>
     {data.data && data.data.length > 0 ? (
       searchCards(data.data, filteredData).map((item) => (
-        <div className="card" key={item.id} >
-          <h1 className="subject">{item.subject}</h1>
-          <h2 className="title">{item.title}</h2>
-          <h3 className="type">{item.type}</h3>
-          <a href={item.link} className="download-button">Download</a>
+        <div className={styles.card} key={item.id} >
+          <h1 className={styles.subject}>{item.subject}</h1>
+          <h2 className={styles.title}>{item.title}</h2>
+          <h3 className={styles.type}>{item.type}</h3>
+          <a href={item.link} className={styles['download-button']}>Download</a>
         </div>
       ))
     ) : (
