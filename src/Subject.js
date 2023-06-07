@@ -61,10 +61,12 @@ function Subject() {
           </Link>
         </li>
         <li className="nav-item active">
+        <Link to="/lab" style={{textDecoration:"none"}}>
           <a className="nav-link" href="Lab.html">
             <i className="fas fa-fw fa-flask" />
             <span>Practicals &amp; Lab</span>
           </a>
+          </Link>
         </li>
         <li className="nav-item active">
           <a className="nav-link" href="PYQ.HTML">
