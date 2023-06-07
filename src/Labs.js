@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { notesData } from "./App";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse,faFlaskVial,faFileInvoice,faAddressCard,faHeart,faMagnifyingGlass,faBars} from '@fortawesome/free-solid-svg-icons'
 
 function Labs(){
   const {setApiState } = useContext(notesData);
@@ -28,26 +30,26 @@ function Labs(){
       <li className="nav-item active">
       <Link to="/"  style={{textDecoration:"none"}}>
         <a className="nav-link" >
-          <i className="fas fa-fw fa-tachometer-alt" />
+        <FontAwesomeIcon icon={faHouse} />
           <span>GLA 1st year Dashboard</span>
         </a>
         </Link>
       </li>
       <li className="nav-item active">
         <a className="nav-link" >
-          <i className="fas fa-fw fa-flask" />
+        <FontAwesomeIcon icon={faFlaskVial} />
           <span>Practicals &amp; Lab</span>
         </a>
       </li>
       <li className="nav-item active">
         <a className="nav-link">
-          <i className="fas fa-fw fa-file" />
+        <FontAwesomeIcon icon={faFileInvoice} />
           <span>Previous Year Papers</span>
         </a>
       </li>
       <li className="nav-item active">
         <a className="nav-link" >
-          <i className="fas fa-fw fa-regular fa-address-card" />
+        <FontAwesomeIcon icon={faAddressCard} />
           <span>About us</span>
         </a>
       </li>
@@ -65,7 +67,7 @@ function Labs(){
             id="sidebarToggleTop"
             className="btn btn-link d-md-none rounded-circle mr-3"
           >
-            <i className="fa fa-bars" />
+          <FontAwesomeIcon icon={faBars} />
           </button>
           <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div className="input-group">
@@ -78,7 +80,7 @@ function Labs(){
               />
               <div className="input-group-append">
                 <button className="btn btn-primary" type="button">
-                  <i className="fas fa-search fa-sm" />
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
               </div>
             </div>
@@ -189,10 +191,7 @@ function Labs(){
                 <div className="responsive-container-block inner-container">
                   <p className="love">
                     Made with{" "}
-                    <i
-                      className="fas fa-solid fa-heart"
-                      style={{ color: "red" }}
-                    />{" "}
+                    <FontAwesomeIcon icon={faHeart} style={{color: "#e74a3b",}} />{" "}
                     in GLA University
                   </p>
                 </div>

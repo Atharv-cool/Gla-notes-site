@@ -3,6 +3,9 @@ import "./css/sb-admin-2.min.css";
 import { useState, useEffect,useContext } from "react";
 import { notesData } from "./App";
 import styles from "./card.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse,faFlaskVial,faFileInvoice,faAddressCard,faMagnifyingGlass,faBars,faAngleUp} from '@fortawesome/free-solid-svg-icons'
+
 function Subject() {
   const [data, setData] = useState([]);
   const [filteredData,setFilteredData] = useState("");
@@ -55,28 +58,28 @@ function Subject() {
         <li className="nav-item active">
         <Link to="/"  style={{textDecoration:"none"}}>
           <a className="nav-link">
-            <i className="fas fa-fw fa-tachometer-alt" />
+          <FontAwesomeIcon icon={faHouse} />
             <span>GLA 1st year Dashboard</span>
           </a>
           </Link>
         </li>
         <li className="nav-item active">
         <Link to="/lab" style={{textDecoration:"none"}}>
-          <a className="nav-link" href="Lab.html">
-            <i className="fas fa-fw fa-flask" />
+          <a className="nav-link">
+          <FontAwesomeIcon icon={faFlaskVial} />
             <span>Practicals &amp; Lab</span>
           </a>
           </Link>
         </li>
         <li className="nav-item active">
-          <a className="nav-link" href="PYQ.HTML">
-            <i className="fas fa-fw fa-file" />
+          <a className="nav-link">
+          <FontAwesomeIcon icon={faFileInvoice} />
             <span>Previous Year Papers</span>
           </a>
         </li>
         <li className="nav-item active">
-          <a className="nav-link" href="About.html">
-            <i className="fas fa-fw fa-regular fa-address-card" />
+          <a className="nav-link">
+          <FontAwesomeIcon icon={faAddressCard} />
             <span>About us</span>
           </a>
         </li>
@@ -101,7 +104,7 @@ function Subject() {
               id="sidebarToggleTop"
               className="btn btn-link d-md-none rounded-circle mr-3"
             >
-              <i className="fa fa-bars" />
+            <FontAwesomeIcon icon={faBars} />
             </button>
             {/* Topbar Search */}
             <form className="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -117,7 +120,7 @@ function Subject() {
                 />
                 <div className="input-group-append">
                   <button className="btn btn-primary" type="button">
-                    <i className="fas fa-search fa-sm" />
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </button>
                 </div>
               </div>
@@ -140,7 +143,7 @@ function Subject() {
   </div>
 </div>
           <a className="scroll-to-top rounded" href="#page-top">
-            <i className="fas fa-angle-up" />
+          <FontAwesomeIcon icon={faAngleUp} />
           </a>
         </div>
       </div>
