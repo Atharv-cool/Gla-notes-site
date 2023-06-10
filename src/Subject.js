@@ -20,6 +20,7 @@ function Subject() {
   }, []);
  
   const handleChange = (event) => {
+    event.preventDefault();
     setFilteredData(event.target.value);
     console.log(filteredData);
   };
@@ -34,13 +35,32 @@ function Subject() {
       });
     }
   };
-
+// Toggle styling 
+const [style,setStyle] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
+const [hamburger,setHamburger] = useState("");
+const hamChange =  ()=>{
+ if(hamburger==""){
+   setHamburger("sidebar-toggled");
+   setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled");
+ } else{
+   setHamburger('');
+   setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
+ }
+}
+const handleClick = ()=>{
+ if(style=="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
+ {
+   setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled");
+ } else{
+   setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
+ }
+}
   
   return (
-    <div id="wrapper">
+    <div id="wrapper" className={hamburger}>
       {/* Sidebar */}
       <ul
-        className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        className={style}
         id="accordionSidebar"
       >
         {/* Sidebar - Brand */}
@@ -88,7 +108,7 @@ function Subject() {
         <hr className="sidebar-divider d-none d-md-block" />
         {/* Sidebar Toggler (Sidebar) */}
         <div className="text-center d-none d-md-inline">
-          <button className="rounded-circle border-0" id="sidebarToggle" />
+          <button className="rounded-circle border-0" onClick={handleClick} id="sidebarToggle" />
         </div>
         {/* Sidebar Message */}
       </ul>
@@ -103,11 +123,13 @@ function Subject() {
             <button
               id="sidebarToggleTop"
               className="btn btn-link d-md-none rounded-circle mr-3"
+              onClick={hamChange}
             >
             <FontAwesomeIcon icon={faBars} />
             </button>
             {/* Topbar Search */}
-            <form className="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <form className="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"   onSubmit={(event) => event.preventDefault()}
+            >
               <div className="input-group">
                 <input
                   type="text"
@@ -119,7 +141,7 @@ function Subject() {
                   onChange={handleChange}
                 />
                 <div className="input-group-append">
-                  <button className="btn btn-primary" type="button">
+                  <button className="btn btn-primary">
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
                   </button>
                 </div>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { notesData } from "./App";
 import "./css/sb-admin-2.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,18 +8,34 @@ import { faHouse,faFlaskVial,faFileInvoice,faAddressCard,faHeart,faMagnifyingGla
 
 function Home () {
   const {setApiState } = useContext(notesData);
- 
+ const [style,setStyle] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
+ const [hamburger,setHamburger] = useState("");
+ const hamChange =  ()=>{
+  if(hamburger==""){
+    setHamburger("sidebar-toggled");
+    setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled");
+  } else{
+    setHamburger('');
+    setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
+  }
+ }
+ const handleClick = ()=>{
+  if(style=="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
+  {
+    setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled");
+  } else{
+    setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
+  }
+ }
     return (
         <div>
   <title>notesj - Dashboard</title>
   
-  <div id="wrapper">
-    {/* Sidebar */}
+  <div id="wrapper" className={hamburger}>
     <ul
-      className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      className={style}
       id="accordionSidebar"
     >
-      {/* Sidebar - Brand */}
       <a
         className="sidebar-brand d-flex align-items-center justify-content-center"
       >
@@ -28,9 +44,7 @@ function Home () {
         </div>
         <div className="sidebar-brand-text mx-3 main-title">notesj</div>
       </a>
-      {/* Divider */}
       <hr className="sidebar-divider my-0" />
-      {/* Nav Item - Dashboard */}
       <li className="nav-item active">
       <Link to="/" style={{textDecoration:"none"}}>
         <a className="nav-link" >
@@ -47,11 +61,13 @@ function Home () {
         </a>
         </Link>
       </li>
-      <li className="nav-item active">
+      <li className="nav-item active" onClick={() => setApiState('PYQ')}>
+           <Link to="/subject" style={{textDecoration:"none"}}>
         <a className="nav-link" >
         <FontAwesomeIcon icon={faFileInvoice} />
           <span>Previous Year Papers</span>
         </a>
+        </Link>
       </li>
       <li className="nav-item active">
         <a className="nav-link" >
@@ -59,31 +75,23 @@ function Home () {
           <span>About us</span>
         </a>
       </li>
-      {/* Nav Item - Utilities Collapse Menu */}
-      {/* Divider */}
       <hr className="sidebar-divider" />
-      {/* Divider */}
       <hr className="sidebar-divider d-none d-md-block" />
-      {/* Sidebar Toggler (Sidebar) */}
       <div className="text-center d-none d-md-inline">
-        <button className="rounded-circle border-0" id="sidebarToggle" />
+        <button className="rounded-circle border-0" onClick={handleClick} id="sidebarToggle" />
       </div>
     </ul>
-    {/* End of Sidebar */}
-    {/* Content Wrapper */}
+    
     <div id="content-wrapper" className="d-flex flex-column">
-      {/* Main Content */}
       <div id="content">
-        {/* Topbar */}
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-          {/* Sidebar Toggle (Topbar) */}
           <button
             id="sidebarToggleTop"
             className="btn btn-link d-md-none rounded-circle mr-3"
+            onClick={hamChange}
           >
           <FontAwesomeIcon icon={faBars} />
           </button>
-          {/* Topbar Search */}
           <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div className="input-group">
               <input
@@ -100,22 +108,14 @@ function Home () {
               </div>
             </div>
           </form>
-          {/* Topbar Navbar */}
         </nav>
-        {/* End of Topbar */}
-        {/* Begin Page Content */}
         <div className="container-fluid">
-          {/* Page Heading */}
           <div className="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 className="h3 mb-0 text-gray-800"> Btech Dashboard</h1>
           </div>
-          {/* Content Row */}
           <div className="row">
             <div className="row">
-              {/* Content Column */}
               <div className="col-lg-12 mb-4">
-                {/* Project Card Example */}
-                {/* Color System */}
                 <div className="row">
                   <div className="col-lg-4 mb-4" onClick={() => setApiState('Maths')}>
                   <Link to="/subject" style={{textDecoration:"none"}}>
@@ -248,7 +248,6 @@ function Home () {
                   </div>
                 </div>       
               </div>
-              {/* End of Page Wrapper */}
               <div className="responsive-container-block inner-container">
                 <p className="love">
                   Made with{" "}
@@ -256,7 +255,6 @@ function Home () {
                   in GLA University
                 </p>
               </div>
-              {/* Scroll to Top Button*/}
               <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up" />
               </a>

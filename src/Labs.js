@@ -1,17 +1,35 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import { notesData } from "./App";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse,faFlaskVial,faFileInvoice,faAddressCard,faHeart,faMagnifyingGlass,faBars} from '@fortawesome/free-solid-svg-icons'
 
 function Labs(){
   const {setApiState } = useContext(notesData);
-
+  const [style,setStyle] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
+  const [hamburger,setHamburger] = useState("");
+  const hamChange =  ()=>{
+    if(hamburger==""){
+      setHamburger("sidebar-toggled");
+      setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled");
+    } else{
+      setHamburger('');
+      setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
+    }
+   }
+   const handleClick = ()=>{
+    if(style=="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
+    {
+      setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled");
+    } else{
+      setStyle("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
+    }
+   }
     return (
         <div>
-  <div id="wrapper">
+  <div id="wrapper" className={hamburger}>
     <ul
-      className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      className={style}
       id="accordionSidebar"
     >
       <Link to="/" style={{textDecoration:"none"}}>
@@ -41,11 +59,13 @@ function Labs(){
           <span>Practicals &amp; Lab</span>
         </a>
       </li>
-      <li className="nav-item active">
+      <li className="nav-item active" onClick={() => setApiState('PYQ')}>
+      <Link to="/subject" style={{textDecoration:"none"}}>
         <a className="nav-link">
         <FontAwesomeIcon icon={faFileInvoice} />
           <span>Previous Year Papers</span>
         </a>
+        </Link>
       </li>
       <li className="nav-item active">
         <a className="nav-link" >
@@ -56,7 +76,7 @@ function Labs(){
       <hr className="sidebar-divider" />
       <hr className="sidebar-divider d-none d-md-block" />
       <div className="text-center d-none d-md-inline">
-        <button className="rounded-circle border-0" id="sidebarToggle" />
+        <button className="rounded-circle border-0" onClick={handleClick} id="sidebarToggle" />
       </div>
     </ul>
     
@@ -66,6 +86,7 @@ function Labs(){
           <button
             id="sidebarToggleTop"
             className="btn btn-link d-md-none rounded-circle mr-3"
+            onClick={hamChange}
           >
           <FontAwesomeIcon icon={faBars} />
           </button>
@@ -198,8 +219,7 @@ function Labs(){
               </div>
               <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up" />
-              </a>
-              
+              </a>    
             </div>
           </div>
         </div>
