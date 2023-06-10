@@ -209,7 +209,7 @@ function Labs(){
                     </Link>
                   </div>
                 </div>
-                <div className="h-100 d-flex align-items-center justify-content-center">
+                <div className="h-30 d-flex align-items-center justify-content-center">
                   <p className="love">
                     Made with{" "}
                     <FontAwesomeIcon icon={faHeart} style={{color: "#e74a3b",}} />{" "}

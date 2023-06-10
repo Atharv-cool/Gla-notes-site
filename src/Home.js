@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { notesData } from "./App";
 import "./css/sb-admin-2.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHouse,faFlaskVial,faFileInvoice,faAddressCard,faHeart,faMagnifyingGlass,faBars} from '@fortawesome/free-solid-svg-icons'
+import { faHouse,faFlaskVial,faFileInvoice,faAddressCard,faHeart,faMagnifyingGlass,faBars,faArrowsLeftRight} from '@fortawesome/free-solid-svg-icons'
 
 
 function Home () {
@@ -78,7 +78,7 @@ function Home () {
       <hr className="sidebar-divider" />
       <hr className="sidebar-divider d-none d-md-block" />
       <div className="text-center d-none d-md-inline">
-        <button className="rounded-circle border-0" onClick={handleClick} id="sidebarToggle" />
+        <button className="rounded-circle border-0 p-2 " onClick={handleClick} ><FontAwesomeIcon icon={faArrowsLeftRight}  style={{color: "#bcc7e6",}} /></button>
       </div>
     </ul>
     
@@ -247,7 +247,7 @@ function Home () {
                     </Link>
                   </div>
                 </div>    
-                <div className="h-100 d-flex align-items-center justify-content-center">
+                <div className="h-30 d-flex align-items-center justify-content-center">
                 <p className="love">
                   Made with{" "}
                   <FontAwesomeIcon icon={faHeart} style={{color: "#e74a3b",}} />{" "}
