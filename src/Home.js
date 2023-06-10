@@ -246,15 +246,15 @@ function Home () {
                     </div>
                     </Link>
                   </div>
-                </div>       
-              </div>
-              <div className="responsive-container-block inner-container">
+                </div>    
+                <div className="h-100 d-flex align-items-center justify-content-center">
                 <p className="love">
                   Made with{" "}
                   <FontAwesomeIcon icon={faHeart} style={{color: "#e74a3b",}} />{" "}
                   in GLA University
                 </p>
-              </div>
+              </div>   
+              </div> 
               <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up" />
               </a>
