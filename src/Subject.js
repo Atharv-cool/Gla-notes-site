@@ -9,22 +9,37 @@ import { faHouse,faFlaskVial,faFileInvoice,faAddressCard,faMagnifyingGlass,faBar
 function Subject() {
   const [data, setData] = useState([]);
   const [filteredData,setFilteredData] = useState("");
-  const {apiState} = useContext(notesData);
-  console.log(apiState)  
+  const {apiState,setApiState} = useContext(notesData);
+
+  //console.log(apiState)  
+/* 
+  useEffect(() => {
+    localStorage.setItem('apiState', apiState);
+  }, [apiState]);
+
+  useEffect(() => {
+    const storedApiState = localStorage.getItem('apiState');
+    if (storedApiState) {
+      // Set the API state from local storage if it exists
+      setApiState(storedApiState);
+    }
+  }, [setApiState]); */
+
   useEffect(() => {
     fetch(
-      `https://script.google.com/macros/s/AKfycbwVy1I7EB_0qg_3rMjpeOv00520LZIhmJnxtMdqb6T0EKwjL7mDP3Wwv1O271_J827C/exec?subject=${apiState}`
+      `https://script.google.com/macros/s/AKfycbzemxKZ5H5ui3MQS1_D6j95lPGghTm81e3N8Hk1lAoCz7jSBEA4Se5m7AuLNLfJfW_GvA/exec?subject=${apiState}`
     )
       .then((res) => res.json())
       .then((json) => setData(json));
-  }, []);
+  }, [apiState]);
  
   const handleChange = (event) => {
     event.preventDefault();
     setFilteredData(event.target.value);
     console.log(filteredData);
   };
-
+ // https://script.google.com/macros/s/AKfycbwVy1I7EB_0qg_3rMjpeOv00520LZIhmJnxtMdqb6T0EKwjL7mDP3Wwv1O271_J827C/exec
+  //second one https://script.google.com/macros/s/AKfycbzemxKZ5H5ui3MQS1_D6j95lPGghTm81e3N8Hk1lAoCz7jSBEA4Se5m7AuLNLfJfW_GvA/exec
   const searchCards = (cards, filter) => {
     if (filter === "") {
       return cards;
@@ -149,14 +164,17 @@ const handleClick = ()=>{
             </form>  
           </nav>
           <div className="container-fluid">
-  <div id={styles['card-container']}>
+  <div id={styles['card-container']} >
     {data.data && data.data.length > 0 ? (
       searchCards(data.data, filteredData).map((item) => (
-        <div className={styles.card} key={item.id} >
+        <div className={styles.card} key={item.id}  >
           <h1 className={styles.subject}>{item.subject}</h1>
           <h2 className={styles.title}>{item.title}</h2>
           <h3 className={styles.type}>{item.type}</h3>
-          <a href={item.link} className={styles['download-button']}>Download</a>
+          <div style={{ display: 'flex', justifyContent: 'space-between'  }} >
+          <a href={item.link} target="_blank" className={styles['download-button']}>Download</a>
+          <a href={item.view} target="_blank" className="btn btn-info p-3 w-25">view</a>
+          </div>
         </div>
       ))
     ) : (
